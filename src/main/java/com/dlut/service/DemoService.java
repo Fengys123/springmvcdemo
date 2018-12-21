@@ -23,4 +23,10 @@ public class DemoService
             deferredResult.setResult(new Long(System.currentTimeMillis()).toString());
         }
     }
+
+    public String saySomething()
+    {
+        System.out.println("saySomethings!!!");
+        return "syasomethings";
+    }
 }
