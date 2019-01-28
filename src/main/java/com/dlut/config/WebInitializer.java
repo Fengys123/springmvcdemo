@@ -8,7 +8,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-
+/**
+ * WebApplicationInitializer是专门用来配置servlet3.0的接口
+ * 实现此接口会自动被SpringServletContainerInitializer获取到
+ */
 public class WebInitializer implements WebApplicationInitializer
 {
     @Override
@@ -18,6 +21,7 @@ public class WebInitializer implements WebApplicationInitializer
         ctx.register(MyMvcConfig.class);
         ctx.setServletContext(servletContext);
 
+        //注册SpringMVC的DispatcherServlet
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);

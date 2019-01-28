@@ -16,6 +16,9 @@ import org.springframework.web.servlet.view.JstlView;
 import java.util.List;
 
 @Configuration
+/**
+ * 必须添加此句否则重写adapter方法无用
+ */
 @EnableWebMvc
 @EnableScheduling
 @ComponentScan("com.dlut")
@@ -26,11 +29,19 @@ import java.util.List;
  */
 public class MyMvcConfig extends WebMvcConfigurerAdapter
 {
+    /**
+     * <bean id="jsp"  class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+     *         <property name="contentType" value="text/html"/>
+     *         <property name="prefix" value="/WEB-INF/"/>
+     *         <property name="suffix" value=".jsp"/>
+     *     </bean>
+     * @return
+     */
     @Bean
     public InternalResourceViewResolver viewResolver()
     {
         /**
-         * InternalResourceViewResolver 如何使用,是干什么的,未知
+         * InternalResourceViewResolver 视图解析器
          */
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/classes/views/");

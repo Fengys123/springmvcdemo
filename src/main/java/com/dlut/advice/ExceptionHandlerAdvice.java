@@ -12,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class ExceptionHandlerAdvice
 {
+    /**
+     * 用于全局处理控制器里异常
+     */
     @ExceptionHandler(value = Exception.class)
     public ModelAndView exception(Exception exception, WebRequest request)
     {
