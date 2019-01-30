@@ -105,7 +105,7 @@ public class DemoAnnoController
     /**
      * 如果没有@RequestParam,他会根据属性名称进行匹配
      */
-    @RequestMapping(value = "/getxmlwithnoobj" , produces = {"application/xml;charset=UTF-8"})
+    @RequestMapping(value = "/getxmlwithnoobj1" , produces = {"application/xml;charset=UTF-8"})
     public DemoObj getxml1(@RequestParam(value = "ids") String id, @RequestParam String name)
     {
         System.out.println("id:" + Long.valueOf(id));

@@ -52,17 +52,6 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
 
 
     /**
-     * 返回一个拦截器
-     * @return
-     */
-    //@Bean
-    public DemoInterceptor demoInterceptor()
-    {
-        return new DemoInterceptor();
-    }
-
-
-    /**
      * 暂时不知道如何使用
      * @return
      */
@@ -75,6 +64,15 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
     }
 
 
+    /**
+     * 返回一个拦截器
+     * @return
+     */
+    //@Bean
+    public DemoInterceptor demoInterceptor()
+    {
+        return new DemoInterceptor();
+    }
     /**
      * 复写父类中的方法,添加一个拦截器
      * @param registry
@@ -113,9 +111,9 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
     @Override
     public void addViewControllers(ViewControllerRegistry registry)
     {
-        registry.addViewController("/index1").setViewName("index1");
+        registry.addViewController("/index").setViewName("index1");
         registry.addViewController("/toUpload").setViewName("upload");
-        registry.addViewController("/index2").setViewName("index2");
+        //registry.addViewController("/index2").setViewName("index2");
         registry.addViewController("/converter").setViewName("converter");
         registry.addViewController("/sse").setViewName("sse");
         registry.addViewController("/async").setViewName("async");
