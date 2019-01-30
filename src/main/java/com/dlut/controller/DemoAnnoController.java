@@ -3,6 +3,7 @@ package com.dlut.controller;
 import com.dlut.domain.DemoObj;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
+import org.jboss.logging.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,8 +71,7 @@ public class DemoAnnoController
 
     /**
      * 返回一个对象会被自动转化为json格式
-     * @param obj
-     * @return
+     * produces指明了返回对象的类型
      */
     @RequestMapping(value = "/getjson" , produces = "application/json;charset=UTF-8")
     public DemoObj getjson(DemoObj obj)
@@ -82,21 +82,63 @@ public class DemoAnnoController
 
     /**
      * 返回一个对象时,被转为xml格式
+     * produces指明了返回对象的类型
      */
     @RequestMapping(value = "/getxml" , produces = {"application/xml;charset=UTF-8"})
     public DemoObj getxml(DemoObj obj)
     {
-        return new DemoObj(obj.getId() + 1,obj.getName() + "yy");
+        //return new DemoObj(obj.getId() + 1,obj.getName() + "yy");
+        return obj;
+    }
+
+    /**
+     * 如果没有@RequestParam,他会根据属性名称进行匹配
+     */
+    @RequestMapping(value = "/getxmlwithnoobj" , produces = {"application/xml;charset=UTF-8"})
+    public DemoObj getxml(String id,String name)
+    {
+        System.out.println("id:" + Long.valueOf(id));
+        System.out.println("name:" + name);
+        return new DemoObj(Long.valueOf(id),name);
+    }
+
+    /**
+     * 如果没有@RequestParam,他会根据属性名称进行匹配
+     */
+    @RequestMapping(value = "/getxmlwithnoobj" , produces = {"application/xml;charset=UTF-8"})
+    public DemoObj getxml1(@RequestParam(value = "ids") String id, @RequestParam String name)
+    {
+        System.out.println("id:" + Long.valueOf(id));
+        System.out.println("name:" + name);
+        return new DemoObj(Long.valueOf(id),name);
     }
 
 
+    /**
+     * 测试系统处理全局错误信息
+     * @param msg
+     * @param obj
+     * @return
+     */
     @RequestMapping("/advice")
     public String getSomething(@ModelAttribute("msg") String msg,DemoObj obj)
     {
         System.out.println("msg: " + msg);
-        System.out.println("obj: " + obj.getName());
-        System.out.println("obj: " + obj.getId());
+        System.out.println("obj.getName(): " + obj.getName());
+        System.out.println("obj.getID(): " + obj.getId());
         throw new IllegalArgumentException("非常抱歉,参数有误/" + "来自@ModelAttribute:" + msg);
+    }
+
+    /**
+     * 本访问路径
+     * 会把url中的参数写到对象中,但前提是key与属性值要想对应
+     * @param obj
+     */
+    @RequestMapping("/advice1")
+    public void getSomething1(DemoObj obj)
+    {
+        System.out.println("obj.getName(): " + obj.getName());
+        System.out.println("obj.getID(): " + obj.getId());
     }
 
 
