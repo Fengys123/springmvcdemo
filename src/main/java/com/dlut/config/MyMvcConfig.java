@@ -26,6 +26,8 @@ import java.util.List;
  * 测试配置类
  * @author fys
  * Adapter是什么设计模式
+ * 之后版本不推荐使用此方法
+ * 直接实现WebMvcConfigurerAdapter
  */
 public class MyMvcConfig extends WebMvcConfigurerAdapter
 {
@@ -127,13 +129,18 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
         return new MyMessageConverter();
     }
 
-    /*public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new MyMessageConverter());
+    }
+
+    /**
+     * 注册converter
+     * 重载会覆盖掉Springmvc默认注册的多个HttpMessageConverter
+     */
+    /*@Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
+    {
         converters.add(new MyMessageConverter());
     }*/
-
-    //@Override
-    //public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
-    //{
-    //    converters.add(new MyMessageConverter());
-    //}
 }

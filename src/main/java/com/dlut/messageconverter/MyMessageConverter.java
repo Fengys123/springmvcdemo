@@ -21,8 +21,6 @@ public class MyMessageConverter extends AbstractHttpMessageConverter<DemoObj>
 
     /**
      * 表明本Converter只处理DemoObj这个类
-     * @param clazz
-     * @return
      */
     @Override
     protected boolean supports(Class<?> clazz)
@@ -30,6 +28,9 @@ public class MyMessageConverter extends AbstractHttpMessageConverter<DemoObj>
         return DemoObj.class.isAssignableFrom(clazz);
     }
 
+    /**
+     * 处理请求的数据
+     */
     @Override
     protected DemoObj readInternal(Class<? extends DemoObj> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException
     {
