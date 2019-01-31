@@ -52,7 +52,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
 
 
     /**
-     * 暂时不知道如何使用
+     * 上传的一些配置
      * @return
      */
     @Bean
