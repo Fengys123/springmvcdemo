@@ -147,6 +147,7 @@ public class DemoAnnoController
     {
         try
         {
+            System.out.println("[file upload] name: " + file.getOriginalFilename());
             FileUtils.writeByteArrayToFile(new File("e:/upload/" + file.getOriginalFilename()),file.getBytes());
             return "ok";
         }

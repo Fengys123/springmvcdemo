@@ -60,6 +60,8 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
     {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setMaxUploadSize(1000000);
+        //避免出现中文乱码问题
+        multipartResolver.setDefaultEncoding("utf-8");
         return multipartResolver;
     }
 
@@ -96,7 +98,8 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
 
 
     /**
-     * 访问路径如果配到ww.yy会忽略.后面的路径,通过重写configurePathMatch进行修改
+     * 在springmvc中,访问路径如果带.的话,.后面的路径会被自动忽略
+     * 通过重写configurePathMatch进行修改,便可以实现不用忽略.后面的路径
      */
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer)
