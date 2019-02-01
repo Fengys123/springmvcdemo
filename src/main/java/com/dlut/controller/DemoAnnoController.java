@@ -171,6 +171,8 @@ public class DemoAnnoController
      * 长轮询:客户端向服务器发送Ajax请求，服务器接到请求后保持连接，直到有新消息才返回响应信息并关闭连接，客户端处理完响应信息后再向服务器发送新的请求
      * 长连接：保持长时间的连接，服务器发送数据后，连接不关闭，下次有新数据时仍然用此连接发送
      * SSE缺点:如果客户端较多的话,就要保持很多长连接
+     * https://www.jianshu.com/p/100b82730e15
+     * 对颠覆者案例的辩解
      * @param response
      */
     @RequestMapping(value="/push")
@@ -206,7 +208,7 @@ public class DemoAnnoController
     @RequestMapping(value="/push1",produces="text/event-stream")
     public String push1(HttpServletResponse res){
 
-        res.setHeader("Access-Control-Allow-Origin","*");
+        res.setContentType("text/event-stream");
 
         /**
          * 为什么默认是三秒,然后这里休息2秒,总共就是5秒

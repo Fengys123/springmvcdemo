@@ -16,12 +16,14 @@
            var source = new EventSource('anno/push1');
            s = '';
 
+           //当接受到消息时产生
            source.addEventListener('message',function(e){
                console.log('进入message监听');
                s += e.data + "<br/>";
                $("#msgFromPush").html(s);
            });
 
+           //当出现错误时
            source.addEventListener('error',function(e){
                console.log('进入error监听');
                if(e.readyState == EventSource.CLOSED)
@@ -34,6 +36,7 @@
                }
            },false);
 
+           //当成功建立连接时产生
            source.addEventListener('open',function(e){
                console.log("连接打开");
            },false);

@@ -26,6 +26,7 @@ public class MyMessageConverter extends AbstractHttpMessageConverter<DemoObj>
     protected boolean supports(Class<?> clazz)
     {
         return DemoObj.class.isAssignableFrom(clazz);
+        //return false;
     }
 
     /**

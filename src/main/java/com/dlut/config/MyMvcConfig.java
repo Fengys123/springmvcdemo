@@ -130,17 +130,18 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter
     }
 
 
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+
+    /*public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new MyMessageConverter());
-    }
+    }*/
 
     /**
      * 注册converter
      * 重载会覆盖掉Springmvc默认注册的多个HttpMessageConverter
      */
-    /*@Override
+    @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
     {
         converters.add(new MyMessageConverter());
-    }*/
+    }
 }
